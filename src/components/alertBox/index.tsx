@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { Alert, Box, Stack } from '@mui/material'
+import * as React from 'react';
+import { Alert, Box, Stack } from '@mui/material';
 
 export enum AlertSeverity {
     ERROR = 'error',
@@ -9,15 +9,15 @@ export enum AlertSeverity {
 }
 
 export type AlertProps = {
-    id: string
-    childElement?: JSX.Element | string
-    severity?: AlertSeverity
-}
+    id: string;
+    childElement?: JSX.Element | string;
+    severity?: AlertSeverity;
+};
 
 export type AlertBoxProps = {
-    alerts: Array<AlertProps> | null
-    onRemoveAlert: (_: string) => void
-}
+    alerts: Array<AlertProps> | null;
+    onRemoveAlert: (_: string) => void;
+};
 
 const AlertBox = ({ alerts, onRemoveAlert }: AlertBoxProps): JSX.Element => {
     const getAlert = (alertItem: AlertProps) => {
@@ -29,18 +29,18 @@ const AlertBox = ({ alerts, onRemoveAlert }: AlertBoxProps): JSX.Element => {
             >
                 {alertItem.childElement}
             </Alert>
-        )
-    }
+        );
+    };
 
     return alerts ? (
-        <Box sx={{ mx: 2 }}>
+        <Box sx={{ mx: 2 }} data-testid='alertBoxDiv'>
             <Stack spacing={2}>
                 {alerts.map((alertItem) => getAlert(alertItem))}
             </Stack>
         </Box>
     ) : (
         <></>
-    )
-}
+    );
+};
 
-export default AlertBox
+export default AlertBox;

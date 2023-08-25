@@ -1,9 +1,9 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import AppRoutes from './routes'
-import Header from './components/header'
-import './App.css'
-import ContextProviderWrapper from './context'
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes';
+import Header from './components/header';
+import './App.css';
+import ContextProviderWrapper from './context';
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
                 </ContextProviderWrapper>
             </BrowserRouter>
         </div>
-    )
+    );
 }
 
-export default App
+export default App;

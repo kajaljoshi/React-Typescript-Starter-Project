@@ -1,52 +1,51 @@
-import * as React from 'react'
-import { LoggerContext } from '../../context/logger'
+import * as React from 'react';
+import { LoggerContext } from '../../context/logger';
 
 type ErrorBoundryPropType = {
-    fallbackComponent: (_: any) => JSX.Element
-    onReset?: Function
-    children: any
-}
+    fallbackComponent: (_: any) => JSX.Element;
+    children: any;
+};
 
 type ErrorBoundryState = {
-    isError: boolean
-}
+    isError: boolean;
+};
 
 const initialState = {
     isError: false,
-}
+};
 
 class ErrorBoundry extends React.Component<
     ErrorBoundryPropType,
     ErrorBoundryState
 > {
-    static contextType = LoggerContext
-    context!: React.ContextType<typeof LoggerContext>
+    static contextType = LoggerContext;
+    context!: React.ContextType<typeof LoggerContext>;
 
     constructor(props: ErrorBoundryPropType) {
-        super(props)
-        this.state = initialState
+        super(props);
+        this.state = initialState;
     }
 
     static getDerivedStateFromError(error: any) {
-        return { isError: true }
+        return { isError: true };
     }
 
     componentDidCatch(error: Error, errorInfo: any) {
         // log error to system
-        this.context.logError(error)
+        this.context.logError(error);
     }
 
     render() {
-        const { isError } = this.state
+        const { isError } = this.state;
 
         if (isError) {
             return (
-                <this.props.fallbackComponent onReset={this.props?.onReset} />
-            )
+                <this.props.fallbackComponent />
+            );
         }
 
-        return this.props.children
+        return this.props.children;
     }
 }
 
-export default ErrorBoundry
+export default ErrorBoundry;

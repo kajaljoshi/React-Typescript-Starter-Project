@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { Provider as RollbarProvider } from '@rollbar/react'
-import { AlertContextProvider } from './alert'
-import { LoggerContextProvider } from './logger'
-import ErrorBody from '../components/errorBody'
-import ErrorBoundry from '../components/errorBoundry'
+import * as React from 'react';
+import { Provider as RollbarProvider } from '@rollbar/react';
+import { AlertContextProvider } from './alert';
+import { LoggerContextProvider } from './logger';
+import ErrorBody from '../components/errorBody';
+import ErrorBoundry from '../components/errorBoundry';
 
 type ContextProviderWrapperPropType = {
-    children: JSX.Element
-}
+    children: JSX.Element;
+};
 
 const rollbarConfig = {
     accessToken: process.env['LOG_KEY'],
@@ -21,7 +21,7 @@ const rollbarConfig = {
             },
         },
     },
-}
+};
 
 const ContextProviderWrapper = ({
     children,
@@ -36,7 +36,7 @@ const ContextProviderWrapper = ({
                 </LoggerContextProvider>
             </RollbarProvider>
         </>
-    )
-}
+    );
+};
 
-export default ContextProviderWrapper
+export default ContextProviderWrapper;

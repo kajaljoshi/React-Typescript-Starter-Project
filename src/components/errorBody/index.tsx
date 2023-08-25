@@ -1,13 +1,9 @@
-import * as React from 'react'
-import { Box, Typography } from '@mui/material'
+import * as React from 'react';
+import { Box, Typography } from '@mui/material';
 
-const errorImageSrc = '../../assets/error.jpeg'
+const errorImageSrc = '../../assets/error.jpeg';
 
-type ErrorBodyPropType = {
-    onReset?: Function | null
-}
-
-const ErrorBody = ({ onReset }: ErrorBodyPropType): JSX.Element => {
+const ErrorBody = (): JSX.Element => {
     return (
         <Box
             sx={{
@@ -18,6 +14,7 @@ const ErrorBody = ({ onReset }: ErrorBodyPropType): JSX.Element => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
+            data-testid='errorBodyDiv'
         >
             <img
                 width="50%"
@@ -35,7 +32,7 @@ const ErrorBody = ({ onReset }: ErrorBodyPropType): JSX.Element => {
                 </Typography>
             </Box>
         </Box>
-    )
-}
+    );
+};
 
-export default ErrorBody
+export default ErrorBody;

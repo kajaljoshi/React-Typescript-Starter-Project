@@ -1,61 +1,61 @@
-import * as React from 'react'
-import AlertBox, { AlertProps } from '../components/alertBox'
-import { uniqueId } from 'lodash'
+import * as React from 'react';
+import AlertBox, { AlertProps } from '../components/alertBox';
+import { uniqueId } from 'lodash';
 
 enum AlertActions {
     AddAlert = 'addAlert',
     DeletAlert = 'deleteAlert',
 }
 
-type alertContextValueType = {
-    setAlert: (_: alertContextProp) => string
-    removeAlert: (_: string) => void
-}
+export type alertContextValueType = {
+    setAlert: (_: alertContextProp) => string;
+    removeAlert: (_: string) => void;
+};
 
 const initContextValue = {
     setAlert: () => '',
     removeAlert: () => null,
-}
+};
 
-type alertContextProp = Omit<AlertProps, 'id'>
+type alertContextProp = Omit<AlertProps, 'id'>;
 
 function alertReducer(alerts: AlertProps[], action: any) {
     switch (action.type) {
         case AlertActions.AddAlert: {
-            return [...alerts, action.data]
+            return [...alerts, action.data];
         }
         case AlertActions.DeletAlert: {
-            return alerts.filter((data) => data.id !== action.id)
+            return alerts.filter((data) => data.id !== action.id);
         }
         default: {
-            return []
+            return [];
         }
     }
 }
 
 export const AlertContext =
-    React.createContext<alertContextValueType>(initContextValue)
+    React.createContext<alertContextValueType>(initContextValue);
 
 export const AlertContextProvider = (props: any): JSX.Element => {
-    const [alertList, dispatch] = React.useReducer(alertReducer, [])
+    const [alertList, dispatch] = React.useReducer(alertReducer, []);
 
     const addAlert = (data: alertContextProp) => {
-        const id = uniqueId()
+        const id = uniqueId();
         dispatch({
             type: AlertActions.AddAlert,
             data: {
                 id,
                 ...data,
             },
-        })
-        return id
-    }
+        });
+        return id;
+    };
 
     const deleteAlert = (id: string) =>
         dispatch({
             type: AlertActions.DeletAlert,
             id,
-        })
+        });
 
     return (
         <AlertContext.Provider
@@ -64,5 +64,5 @@ export const AlertContextProvider = (props: any): JSX.Element => {
             <AlertBox alerts={alertList} onRemoveAlert={deleteAlert} />
             {props.children}
         </AlertContext.Provider>
-    )
-}
+    );
+};
