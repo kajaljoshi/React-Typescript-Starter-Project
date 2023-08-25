@@ -1,0 +1,12 @@
+.Header {
+    width: 100%;
+    top: 0;
+    left: 0;
+    min-height: 50px;
+    background-color: lightgray;
+    overflow: hidden;
+}
+
+.Title {
+    color: white;
+}
